@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -la | sed -e 's/^\.\{0,1\}\(.*\)$/,\1/' | sed -e 's/\/$/\//' | sort -d -f --key=1.2n | tr '\n' ',' && echo
