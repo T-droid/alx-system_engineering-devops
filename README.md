@@ -1,1 +1,1 @@
-shell permissions
+shell variables and expansions
