@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#displays bad luck for the 4th iteration good luck for the 8th iteration an best school for the rest
+
+count=0
+while [ $count -lt 10 ]
+do
+	if [ $count -eq 4 ]
+	then
+		echo "bad lack"
+	elif [ $count -eq 8 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((count++))
+done

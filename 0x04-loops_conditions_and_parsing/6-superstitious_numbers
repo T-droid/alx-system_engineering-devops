@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#for the 4th iteration display bad luck from china for the 9th bad luck from japan and 17 bad luck from italy
+
+count=1
+while [ $count -lt 21 ]
+do
+	case $count in
+		4)
+			echo "bad luck from China"
+			;;
+		9)
+			echo "bad luck from japan"
+			;;
+		17)
+			echo "bad luck from italy"
+			;;
+		*)
+			echo $count
+	esac
+	((count++))
+done

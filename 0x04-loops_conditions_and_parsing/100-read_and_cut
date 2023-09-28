@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#script to display username user id Home directory for the user in /etc/passwd
+
+filename="/etc/passwd"
+while IFS=: read -r user _ uid _ _ home; do
+	echo "$user":"$uid":"$home"
+done < "$filename"
