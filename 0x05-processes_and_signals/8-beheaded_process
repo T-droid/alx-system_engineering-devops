@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#terminates the highlander process
+
+my_script="7-highlander"
+
+mpid=$(pgrep -f "$my_script")
+
+if [ -n "$mpid" ]
+then
+	kill -9 "$mpid"
+fi

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#kills a procces
+
+my_script="4-to_infinity_and_beyond"
+script_pid=$(pgrep -f "$my_script")
+
+if  [ -n "$script_pid" ]
+then
+	kill "$script_pid"
+fi
