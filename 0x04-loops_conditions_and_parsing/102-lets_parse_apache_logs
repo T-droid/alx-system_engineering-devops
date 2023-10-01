@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#script to parse apache logs
+
+filename='apache-access (1).log'
+
+if [ ! -f "$filename" ]
+then
+	echo "file not found or is empty"
+	exit 1
+fi
+
+awk '{print $1}' "$filename"

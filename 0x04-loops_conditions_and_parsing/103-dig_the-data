@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#script to group apach log data and print them
+
+filename='apache-access (1).log'
+
+if [ ! -f "$filename" ]; then
+    echo "Error: File not found or is empty."
+    exit 1
+fi
+
+
+awk '{ ip_address[ip] = $1; http_status[ht] = $9; occurrence[oc] = $10 } { { print occurrence[oc], ip_address[ip], http_status[ht] } }' "$filename" | sort -nr
