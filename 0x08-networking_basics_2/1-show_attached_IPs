@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#displays all active IPV4
+
+ifconfig | grep "inet " | tr ":" " " | awk '{print $3}'
