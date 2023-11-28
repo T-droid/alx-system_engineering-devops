@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#configure nginx server for a 404 error
+
+config_file="/etc/nginx/sites-available/default"
+not_found_content="Ceci n'est pas une page"
+
+# Use sed to add a custom error page for 404
+sed -i "/server {/a \
+        error_page 404 /404_custom.html;" "$config_file"
+
+
+echo "$not_found_content" | sudo tee /var/www/html/404_custom.html > /dev/null
+
+
+nginx -t
+
+service nginx restart
