@@ -1,36 +1,37 @@
-#!/bin/env bash
-# Update the package repository
+#!/usr/bin/env bash
+#script to configure nginx with a custom header
 
-sudo apt update
+REMOTE_USER=$1
+REMOTE_HOST=$2
+NGINX_CONFIG_PATH="/etc/nginx/nginx.conf"
+VALUE=$3
 
-# Install Nginx
-sudo apt install -y nginx
+if [ $# -lt 3 ]
+then
+	echo "not enough arguments"
+	exit 1
+fi
 
-# Obtain the hostname of the server
-hostname=$(hostname)
-
-# Configure Nginx to include the custom header
-cat <<EOL | sudo tee /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    server_name _;
-
-    location / {
-        # Your existing configuration goes here...
-
-        # Add the custom HTTP header
-        add_header X-Served-By "$hostname";
-    }
+CONFIG_CONTENT="
+events {
+	worker_connections 1024;
 }
-EOL
+http {
+	server {
+		listen 80;
+		server_name 34.229.67.177;
+		add_header X-Served-By \"$VALUE\";
 
-# Remove the default Nginx site configuration
-sudo rm /etc/nginx/sites-enabled/default
+		location / {
+			root /var/www/html;
+			index index.html;
+			autoindex on;
+		}
+	}
+}
+"
 
-# Test Nginx configuration syntax
-sudo nginx -t
+echo "$CONFIG_CONTENT" | ssh "$REMOTE_USER"@"$REMOTE_HOST" "sudo tee $NGINX_CONFIG_PATH > /dev/null"
 
-# Reload Nginx to apply the changes
-sudo systemctl reload nginx
+#restart nginx on remote server to apply changes
+ssh "$REMOTE_USER"@"$REMOTE_HOST" "sudo systemctl restart nginx"
