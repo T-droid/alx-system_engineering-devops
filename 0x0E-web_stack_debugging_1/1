@@ -1,0 +1,35 @@
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create?name=nginx-container": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-12-19 17:03:01 EAT; 49s ago
+       Docs: man:nginx(8)
+    Process: 39531 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 39534 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 39535 (nginx)
+      Tasks: 5 (limit: 8714)
+     Memory: 4.8M
+        CPU: 123ms
+     CGroup: /system.slice/nginx.service
+             ├─39535 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─39536 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─39537 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             ├─39538 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+             └─39539 "nginx: worker process" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+
+Des 19 17:03:01 selfish-HP-EliteBook-x360-1030-G2 systemd[1]: Starting A high performance web server and a reverse proxy server...
+Des 19 17:03:01 selfish-HP-EliteBook-x360-1030-G2 systemd[1]: Started A high performance web server and a reverse proxy server.
+nginx: [alert] could not open error log file: open() "/var/log/nginx/error.log" failed (13: Permission denied)
+2023/12/19 17:03:51 [warn] 39601#39601: the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+2023/12/19 17:03:51 [emerg] 39601#39601: open() "/run/nginx.pid" failed (13: Permission denied)
+nginx: configuration file /etc/nginx/nginx.conf test failed
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:8081          0.0.0.0:*               LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+udp6       0      0 fe80::dde1:178d:99d:546 :::*                               
+sed: couldn't open temporary file /etc/nginx/sedzY6PId: Permission denied
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:8081          0.0.0.0:*               LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+udp6       0      0 fe80::dde1:178d:99d:546 :::*                               

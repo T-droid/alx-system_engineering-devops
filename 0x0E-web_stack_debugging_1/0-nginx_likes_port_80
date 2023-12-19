@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#script to debug web server
+
+sudo apt-get update
+sudo apt-get install docker.io -y
+sudo apt install nginx -y
+
+docker run -it --name nginx-container ubuntu /bin/bash
+
+service nginx status
+
+nginx -t
+
+netstat -tuln | grep 80
+
+sed -i 's/listen\s*80;/listen 80;/g' /etc/nginx/nginx.conf
+
+service nginx restart
+
+netstat -tuln | grep 80
+
+exit
