@@ -1,0 +1,14 @@
+frontend my_frontend
+        bind *:443 ssl crt /etc/letsencrypt/live/www.droid.com/fullchain.pem
+        reqadd X-Forwarded-Proto:\ https
+        mode http
+        timeout client 10s
+        default_backend my_servers
+
+backend my_servers
+        mode http
+        timeout connect 20s
+        balance roundrobin
+        server 335068-web-01 54.160.118.189:80
+        server 335068-web-02 34.229.67.177:80
+        timeout server 20s
